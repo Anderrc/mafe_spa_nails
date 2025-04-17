@@ -8,6 +8,7 @@ export interface Action {
 		telefono: string;
 		notas: string;
 	}) => void;
+	reset: () => void;
 	updateFormData: (formData: {
 		nombre: string;
 		apellido: string;

@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 export const StepFour = () => {
 	return (
@@ -20,11 +19,11 @@ export const StepFour = () => {
 				/>
 			</div>
 
-			<Link
+			<a
 				className='mt-6 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors'
 				href={'/'}>
 				Volver a Inicio
-			</Link>
+			</a>
 		</div>
 	);
 };

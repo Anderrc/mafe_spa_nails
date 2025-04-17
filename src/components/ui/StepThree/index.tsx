@@ -2,6 +2,7 @@ import { currencyFormatter } from '@/libs/utils';
 import { useStore } from '@/zustand/store';
 
 const StepThree = () => {
+
 	const { formData, selectedServices, services, selectedDate, selectedTime } =
 		useStore(state => state);
 	const { updateFormData: setFormData } = useStore(state => state);

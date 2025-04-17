@@ -7,21 +7,39 @@ export const useStore = create<State & Action>(set => ({
 	selectedDate: '',
 	selectedTime: '',
 	currentStep: 1,
-  dates: [],
-  isLoading: false,
+	dates: [],
+	isLoading: false,
 	formData: {
 		nombre: '',
 		apellido: '',
 		document: '',
 		telefono: '',
-    correo: '',
+		correo: '',
 		notas: '',
 	},
+	reset: () =>
+		set({
+			services: [],
+			selectedServices: undefined,
+			selectedDate: '',
+			selectedTime: '',
+			currentStep: 1,
+			dates: [],
+			isLoading: false,
+			formData: {
+				nombre: '',
+				apellido: '',
+				document: '',
+				telefono: '',
+				correo: '',
+				notas: '',
+			},
+		}),
 	updateFormData: (formData: {
 		nombre: string;
 		apellido: string;
 		document: string;
-    correo: string;
+		correo: string;
 		telefono: string;
 		notas: string;
 	}) => set({ formData }),
@@ -48,7 +66,7 @@ export const useStore = create<State & Action>(set => ({
 			duration: string;
 		}[],
 	) => set({ services }),
-  setDates: (dates: string[]) => set({ dates }),
-  setIsLoading: (isLoading: boolean) => set({ isLoading }),
+	setDates: (dates: string[]) => set({ dates }),
+	setIsLoading: (isLoading: boolean) => set({ isLoading }),
 }));
 

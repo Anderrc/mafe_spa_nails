@@ -23,6 +23,7 @@ const Reservations = () => {
 		isLoading,
 		setIsLoading,
 		updateSelectedServices,
+		reset,
 	} = useStore(state => state);
 
 	const searchParams = useSearchParams();
@@ -31,12 +32,12 @@ const Reservations = () => {
 
 	const goToNextStep = async () => {
 		if (currentStep === 1 && selectedServices === undefined) {
-			alert('Por favor selecciona al menos un servicio');
+			toast.error('Por favor selecciona al menos un servicio');
 			return;
 		}
 
 		if (currentStep === 2 && (!selectedDate || !selectedTime)) {
-			alert('Por favor selecciona fecha y hora');
+			toast.error('Por favor selecciona fecha y hora');
 			return;
 		}
 
@@ -48,7 +49,7 @@ const Reservations = () => {
 				!formData.telefono ||
 				!formData.correo
 			) {
-				alert('Por favor completa todos los campos obligatorios');
+				toast.error('Por favor completa todos los campos obligatorios');
 				return;
 			}
 
@@ -111,7 +112,7 @@ const Reservations = () => {
 											</div>
 											<div className='ml-3 flex-1'>
 												<p className='text-sm font-medium text-gray-900'>
-													Emilia Gates
+													{formData.nombre} {formData.apellido}
 												</p>
 												<p className='mt-1 text-sm text-gray-500'>
 													Nos vemos el {selectedDate}{' '}
@@ -143,7 +144,6 @@ const Reservations = () => {
 					console.error('💩 ~ error:', error);
 					toast.error('error al enviar la reserva');
 				});
-			// alert('¡Reserva confirmada!');
 			return;
 		}
 
@@ -172,8 +172,12 @@ const Reservations = () => {
 		}
 	}, [search, setCurrentStep, updateSelectedServices]);
 
+	useEffect(() => {
+		reset();
+	}, [reset]);
+
 	return (
-		<div className='h-full max-w-4xl mx-auto p-6 bg-white'>
+		<div className='h-full max-w-4xl sm-w-full mx-auto p-6 bg-white'>
 			{/* Header */}
 			<ModalLoading isLoading={isLoading} />
 
@@ -191,8 +195,8 @@ const Reservations = () => {
 			{/* Reservation Card */}
 			<div className='min-h-dv border rounded-lg p-6 shadow-sm'>
 				{/* Reservation Header */}
-				<div className='flex justify-between items-center mb-6 border-b pb-4'>
-					<div className='w-1/3'>
+				<div className='flex justify-between items-center mb-6 border-b pb-4 flex-col flex-wrap md:flex-row'>
+					<div className=' md:w-1/3 w-full mb-6'>
 						<h2 className='text-md font-bold'>
 							Detalles de la Reserva
 						</h2>
@@ -203,7 +207,7 @@ const Reservations = () => {
 
 					{/* Stepper */}
 					<div className='flex items-center space-x-1 text-sm'>
-						<div className='flex items-center'>
+						<div className='flex items-center flex-col space-y-1 md:flex-row'>
 							<span
 								className={`${
 									currentStep === 1
@@ -213,16 +217,14 @@ const Reservations = () => {
 								1
 							</span>
 							<span
-								className={
-									currentStep === 1
-										? 'text-[#85cbf9]  font-medium'
-										: 'text-gray-600'
-								}>
+								className={`hidden md:block
+									${currentStep === 1 ? 'text-black font-bold' : 'text-gray-600'}
+									`}>
 								Servicio
 							</span>
 						</div>
 						<span className='text-gray-400'>——</span>
-						<div className='flex items-center'>
+						<div className='flex items-center flex-col space-y-1 md:flex-row'>
 							<span
 								className={`${
 									currentStep === 2
@@ -232,16 +234,14 @@ const Reservations = () => {
 								2
 							</span>
 							<span
-								className={
-									currentStep === 2
-										? 'text-black font-bold m'
-										: 'text-gray-600'
-								}>
+								className={`hidden md:block
+									${currentStep === 2 ? 'text-black font-bold' : 'text-gray-600'}
+									`}>
 								Fecha y Hora
 							</span>
 						</div>
 						<span className='text-gray-400'>——</span>
-						<div className='flex items-center'>
+						<div className='flex items-center flex-col space-y-1 md:flex-row'>
 							<span
 								className={`${
 									currentStep === 3
@@ -251,16 +251,14 @@ const Reservations = () => {
 								3
 							</span>
 							<span
-								className={
-									currentStep === 3
-										? 'text-black font-bold '
-										: 'text-gray-600'
-								}>
+								className={`hidden md:block
+									${currentStep === 3 ? 'text-black font-bold' : 'text-gray-600'}
+									`}>
 								Información
 							</span>
 						</div>
 						<span className='text-gray-400'>——</span>
-						<div className='flex items-center'>
+						<div className='flex items-center flex-col space-y-1 md:flex-row'>
 							<span
 								className={`${
 									currentStep === 4
@@ -270,11 +268,9 @@ const Reservations = () => {
 								3
 							</span>
 							<span
-								className={
-									currentStep === 4
-										? 'text-black font-bold '
-										: 'text-gray-600'
-								}>
+								className={`hidden md:block
+									${currentStep === 4 ? 'text-black font-bold' : 'text-gray-600'}
+									`}>
 								Confirmación
 							</span>
 						</div>
@@ -311,7 +307,7 @@ const Reservations = () => {
 					{currentStep < 4 && (
 						<>
 							<button
-								className='text-center font-bold bg-[#fbbcb6] text-white py-3 px-6 rounded-md hover:bg-gray-800 transition-colors'
+								className='text-center font-bold bg-[#fbbcb6] text-white py-1 px-3 rounded-md hover:bg-gray-800 transition-colors md:py-3 md:px-6 text-sm'
 								onClick={
 									currentStep > 1
 										? goToPreviousStep
@@ -320,7 +316,7 @@ const Reservations = () => {
 								{currentStep > 1 ? 'Anterior' : 'Cancelar'}
 							</button>{' '}
 							<button
-								className='text-center font-bold bg-[#90ccf4] text-white py-3 px-6 rounded-md hover:bg-gray-800 transition-colors'
+								className='text-center font-bold bg-[#90ccf4] text-white py-1 px-3 rounded-md hover:bg-gray-800 transition-colors md:py-3 md:px-6 text-sm'
 								onClick={goToNextStep}>
 								{currentStep === 3
 									? 'Confirmar Reserva'
@@ -335,3 +331,4 @@ const Reservations = () => {
 };
 
 export default Reservations;
+

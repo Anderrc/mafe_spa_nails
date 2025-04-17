@@ -32,19 +32,20 @@ export default function RootLayout({
 				<link rel='icon' href='/assets/nail-polish.png' />
 			</head>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-				<div className='flex flex-col min-h-screen w-full justify-center align-center'>
-					<header className='sticky top-0 z-10 bg-white border-b w-full'>
-						<div className='container flex items-center justify-between h-16 px-4 md:px-6 max-w-6xl mx-auto'>
+				className={`${geistSans.variable} ${geistMono.variable} antialiased min-w-3xs`}>
+				<div className='flex flex-col min-h-screen justify-center align-center min-w-24'>
+					<header className='sticky top-0 z-10 bg-white border-b w-full min-w-24'>
+						<div className='container flex items-center justify-between h-16 px-4 md:px-6 max-w-6xl mx-auto min-w-24'>
 							<Link href='/' className='flex items-center gap-2'>
-								<span className='text-xl font-semibold flex items-center gap-2'>
+								<span className='text-sm md:text-lg text-center font-semibold flex items-center gap-2'>
 									<Image
 										src='/assets/nail-polish.png'
 										alt={''}
 										width={32}
 										height={32}
+										className='w-6 h-6 md:w-8 md:h-8'
 									/>
-									Mafe Spa
+									Mafe Nails Spa
 								</span>
 							</Link>
 							<nav className='hidden gap-6 md:flex'>
@@ -71,7 +72,7 @@ export default function RootLayout({
 							</nav>
 							<div className='flex items-center gap-4'>
 								<Link href='/reservar'>
-									<Button className='text-center font-bold bg-[#90ccf4] text-white py-3 px-6 rounded-md hover:bg-gray-800 transition-colors'>
+									<Button className='text-center font-bold bg-[#90ccf4] text-white py-1 px-3 rounded-md hover:bg-gray-800 transition-colors md:py-3 md:px-6 text-sm'>
 										Reservar Ahora
 									</Button>
 								</Link>
