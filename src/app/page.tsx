@@ -39,12 +39,12 @@ export default function Home() {
 								<Link href='/reservar'>
 									<Button
 										size='lg'
-										className='text-center font-bold bg-[#90ccf4] text-white py-1 px-3 rounded-md hover:bg-gray-800 transition-colors md:py-2 md:px-5 text-sm md:text-base'>
+										className='text-center font-bold bg-[#fe745f] text-white py-1 px-3 rounded-md hover:bg-gray-800 transition-colors md:py-2 md:px-5 text-sm md:text-base'>
 										Reservar Cita
 									</Button>
 								</Link>
 								<Link href='/servicios'>
-									<Button className='text-center font-bold bg-[#90ccf4] text-white py-1 px-3 rounded-md hover:bg-gray-800 transition-colors md:py-2 md:px-5 text-sm md:text-base'>
+									<Button className='text-center font-bold bg-[#09a6a3] text-white py-1 px-3 rounded-md hover:bg-gray-800 transition-colors md:py-2 md:px-5 text-sm md:text-base'>
 										Ver Servicios
 									</Button>
 								</Link>
@@ -103,7 +103,7 @@ export default function Home() {
 											{currencyFormatter(service.price)}
 										</span>
 										<a href='/reservar?service=1'>
-											<button className='text-center font-bold bg-[#90ccf4] text-white py-1 px-3 rounded-md hover:bg-gray-800 transition-colors md:py-2 md:px-5 text-sm md:text-base'>
+											<button className='text-center font-bold bg-[#09a6a3] text-white py-1 px-3 rounded-md hover:bg-gray-800 transition-colors md:py-2 md:px-5 text-sm md:text-base'>
 												Reservar
 											</button>
 										</a>
@@ -116,7 +116,7 @@ export default function Home() {
 						<Link href='/servicios'>
 							<button
 								type='button'
-								className='text-center font-bold bg-[#90ccf4] text-white py-3 px-6 rounded-md hover:bg-gray-800 transition-colors'>
+								className='text-center font-bold bg-[#09a6a3] text-white py-3 px-6 rounded-md hover:bg-gray-800 transition-colors'>
 								Ver Todos los Servicios
 							</button>
 						</Link>

@@ -307,7 +307,7 @@ const Reservations = () => {
 					{currentStep < 4 && (
 						<>
 							<button
-								className='text-center font-bold bg-[#fbbcb6] text-white py-1 px-3 rounded-md hover:bg-gray-800 transition-colors md:py-3 md:px-6 text-sm'
+								className='text-center font-bold border-2 border-gray-800 text-gray-800 py-1 px-3 rounded-md hover:bg-gray-800 transition-colors md:py-3 md:px-6 text-sm'
 								onClick={
 									currentStep > 1
 										? goToPreviousStep
@@ -316,7 +316,7 @@ const Reservations = () => {
 								{currentStep > 1 ? 'Anterior' : 'Cancelar'}
 							</button>{' '}
 							<button
-								className='text-center font-bold bg-[#90ccf4] text-white py-1 px-3 rounded-md hover:bg-gray-800 transition-colors md:py-3 md:px-6 text-sm'
+								className='text-center font-bold bg-[#09a6a3] text-white py-1 px-3 rounded-md hover:bg-gray-800 transition-colors md:py-3 md:px-6 text-sm'
 								onClick={goToNextStep}>
 								{currentStep === 3
 									? 'Confirmar Reserva'

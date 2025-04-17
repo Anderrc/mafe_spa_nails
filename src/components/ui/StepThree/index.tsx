@@ -1,11 +1,36 @@
 import { currencyFormatter } from '@/libs/utils';
 import { useStore } from '@/zustand/store';
+import { useState } from 'react';
 
 const StepThree = () => {
-
 	const { formData, selectedServices, services, selectedDate, selectedTime } =
 		useStore(state => state);
 	const { updateFormData: setFormData } = useStore(state => state);
+	const [errors, setErrors] = useState<Record<string, string | null>>({});
+
+	const validate =
+		(rule: (value: string) => boolean, message: string) =>
+		(value: string) => (rule(value) ? null : message);
+
+	const isRequired = (fieldName: string) =>
+		validate(v => v.trim() !== '', `${fieldName} es requerido`);
+
+	const isEmail = validate(
+		v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+		'Correo inválido',
+	);
+
+	const validateDocument = validate(
+		v => /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/.test(v),
+		'Formato de documento inválido',
+	);
+	const validators: Record<string, ((value: string) => string | null)[]> = {
+		nombre: [isRequired('Nombre')],
+		apellido: [isRequired('Apellido')],
+		correo: [isRequired('Correo'), isEmail],
+		telefono: [isRequired('Teléfono')],
+		document: [isRequired('Documento'), validateDocument],
+	};
 
 	const formatDate = (dateString: string) => {
 		if (!dateString) return '';
@@ -27,10 +52,37 @@ const StepThree = () => {
 		return service ? currencyFormatter(service.price) : 0;
 	};
 
+	// const handleInputChange = (e: {
+	// 	target: { name: string; value: string };
+	// }) => {
+	// 	const { name, value } = e.target;
+	// 	setFormData({
+	// 		...formData,
+	// 		[name]: value,
+	// 	});
+	// };
+
 	const handleInputChange = (e: {
 		target: { name: string; value: string };
 	}) => {
 		const { name, value } = e.target;
+
+		// Validar si hay reglas para ese campo
+		const fieldValidators = validators[name];
+		let error = null;
+
+		if (fieldValidators) {
+			for (const validateFn of fieldValidators) {
+				const validationResult = validateFn(value);
+				if (validationResult) {
+					error = validationResult;
+					break;
+				}
+			}
+		}
+
+		setErrors(prev => ({ ...prev, [name]: error }));
+
 		setFormData({
 			...formData,
 			[name]: value,
@@ -55,6 +107,11 @@ const StepThree = () => {
 						onChange={handleInputChange}
 						required
 					/>
+					{errors.nombre && (
+						<p className='text-red-500 text-sm mt-1'>
+							{errors.nombre}
+						</p>
+					)}
 				</div>
 
 				<div>
@@ -72,6 +129,11 @@ const StepThree = () => {
 						onChange={handleInputChange}
 						required
 					/>
+					{errors.apellido && (
+						<p className='text-red-500 text-sm mt-1'>
+							{errors.apellido}
+						</p>
+					)}
 				</div>
 
 				<div>
@@ -89,6 +151,11 @@ const StepThree = () => {
 						onChange={handleInputChange}
 						required
 					/>
+					{errors.document && (
+						<p className='text-red-500 text-sm mt-1'>
+							{errors.document}
+						</p>
+					)}
 				</div>
 
 				<div>
@@ -106,6 +173,11 @@ const StepThree = () => {
 						onChange={handleInputChange}
 						required
 					/>
+					{errors.telefono && (
+						<p className='text-red-500 text-sm mt-1'>
+							{errors.telefono}
+						</p>
+					)}
 				</div>
 				<div>
 					<label
@@ -122,6 +194,11 @@ const StepThree = () => {
 						onChange={handleInputChange}
 						required
 					/>
+					{errors.correo && (
+						<p className='text-red-500 text-sm mt-1'>
+							{errors.correo}
+						</p>
+					)}
 				</div>
 			</div>
 

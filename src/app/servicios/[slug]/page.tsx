@@ -79,7 +79,7 @@ export default async function ServicePage({
 						</div>
 						<Link
 							href={`/reservar?id=${service.id}`}
-							className='text-center font-bold bg-[#90ccf4] text-white py-3 px-6 rounded-md hover:bg-gray-800 transition-colors'>
+							className='text-center font-bold bg-[#09a6a3] text-white py-3 px-6 rounded-md hover:bg-gray-800 transition-colors'>
 							Separa tu cita
 						</Link>
 					</div>
@@ -88,7 +88,7 @@ export default async function ServicePage({
 					<Link href='/servicios'>
 						<button
 							type='button'
-							className='rounded-md font-bold  text-base bg-[#90ccf4] text-white py-3 px-6 hover:bg-gray-800 transition-colors'>
+							className='rounded-md font-bold  text-base bg-[#09a6a3] text-white py-3 px-6 hover:bg-gray-800 transition-colors'>
 							Ver Todos los Servicios
 						</button>
 					</Link>

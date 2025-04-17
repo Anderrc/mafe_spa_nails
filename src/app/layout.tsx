@@ -72,7 +72,7 @@ export default function RootLayout({
 							</nav>
 							<div className='flex items-center gap-4'>
 								<Link href='/reservar'>
-									<Button className='text-center font-bold bg-[#90ccf4] text-white py-1 px-3 rounded-md hover:bg-gray-800 transition-colors md:py-3 md:px-6 text-sm'>
+									<Button className='text-center font-bold bg-[#09a6a3] text-white py-1 px-3 rounded-md hover:bg-gray-800 transition-colors md:py-3 md:px-6 text-sm'>
 										Reservar Ahora
 									</Button>
 								</Link>
