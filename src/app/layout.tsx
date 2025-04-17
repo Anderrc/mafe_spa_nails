@@ -91,7 +91,7 @@ export default function RootLayout({
 							<div className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4'>
 								<div>
 									<h3 className='text-lg font-semibold'>
-										Serenity Spa
+										Mafe Nails Spa
 									</h3>
 									<p className='mt-2 text-sm text-muted-foreground'>
 										Tu oasis de tranquilidad y bienestar en
@@ -171,7 +171,7 @@ export default function RootLayout({
 							</div>
 							<div className='flex flex-col items-center justify-between gap-4 mt-8 md:flex-row'>
 								<p className='text-sm text-muted-foreground'>
-									© 2024 Serenity Spa. Todos los derechos
+									© 2024 Mafe Nails Spa. Todos los derechos
 									reservados.
 								</p>
 								<div className='flex items-center gap-4'>

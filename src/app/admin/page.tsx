@@ -127,7 +127,7 @@
 // 			{/* Sidebar */}
 // 			<aside className='hidden w-64 p-6 bg-white border-r md:block'>
 // 				<div className='flex items-center mb-8'>
-// 					<h2 className='text-xl font-semibold'>Serenity Spa</h2>
+// 					<h2 className='text-xl font-semibold'>Mafe Nails Spa</h2>
 // 				</div>
 // 				<nav className='space-y-1'>
 // 					<Button variant='ghost' className='justify-start w-full'>
