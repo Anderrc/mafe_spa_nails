@@ -4,22 +4,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export async function generateStaticParams() {
-	// const response = await fetch(
-	// 	process.env.NEXT_PUBLIC_URL + '/api/services',
-	// 	{
-	// 		method: 'GET',
-	// 	},
-	// );
-	// const data = await response.json();
-	// return data.data.map((service: ServicesState) => ({
-	// 	params: { slug: service.id.toString() },
-	// }));
-
-	return [
+	const response = await fetch(
+		process.env.NEXT_PUBLIC_URL + '/api/services',
 		{
-			params: { slug: 1 },
+			method: 'GET',
 		},
-	];
+	);
+	const data = await response.json();
+	return data.data.map((service: ServicesState) => ({
+		params: { slug: service.id.toString() },
+	}));
 }
 
 const getProduct = async ({ params }: ServicePageParams) => {

@@ -1,24 +1,16 @@
+import { ServicesState } from '@/models/useStore';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const getProducts = async () => {
-	// const response = await fetch(
-	// 	process.env.NEXT_PUBLIC_URL + '/api/services',
-	// 	{
-	// 		method: 'GET',
-	// 	},
-	// );
-	// const data = await response.json();
-	// return data.data as ServicesState[];
-	return [
+	const response = await fetch(
+		process.env.NEXT_PUBLIC_URL + '/api/services',
 		{
-			id: 1,
-			name: 'Masaje Relajante',
-			description: 'Masaje de manzana',
-			price: 10,
-			duration: '10 minutos',
+			method: 'GET',
 		},
-	];
+	);
+	const data = await response.json();
+	return data.data as ServicesState[];
 };
 
 export default async function Servicios() {
