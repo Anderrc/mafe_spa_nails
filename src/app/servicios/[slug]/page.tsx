@@ -32,6 +32,25 @@ const getProduct = async ({ params }: ServicePageParams) => {
 	return data.data;
 };
 
+export async function generateMetadata({ params }: ServicePageParams) {
+	const { slug } = params;
+	const product = await getProduct({ params: { slug: slug } });
+	return {
+		title: product.name,
+		description: product.description,
+		openGraph: {
+			type: 'website',
+			url: process.env.NEXT_PUBLIC_URL,
+			title: product.name,
+			description: product.description,
+			images: [`/assets/${product.id}.jpg`],
+			twitter: {
+				card: 'summary_large_image',
+			},
+		},
+	};
+}
+
 interface ServicePageParams {
 	params: {
 		slug: string;
@@ -79,7 +98,7 @@ export default async function ServicePage({
 						</div>
 						<Link
 							href={`/reservar?id=${service.id}`}
-							className='text-center font-bold bg-[#09a6a3] text-white py-3 px-6 rounded-md hover:bg-gray-800 transition-colors'>
+							className='text-center font-bold bg-[#fe745f] text-white py-3 px-6 rounded-md hover:bg-gray-800 transition-colors'>
 							Separa tu cita
 						</Link>
 					</div>

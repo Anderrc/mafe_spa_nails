@@ -6,6 +6,23 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
+// export async function generateMetadata() {
+// 	return {
+// 		title: 'Mafe Nails Spa',
+// 		description: 'Reserva tu experiencia de spa y permítenos cuidar de ti.',
+// 		openGraph: {
+// 			type: 'website',
+// 			url: process.env.NEXT_PUBLIC_URL,
+// 			title: 'Mafe Nails Spa',
+// 			description: 'Reserva tu experiencia de spa y permítenos cuidar de ti.',
+// 			images: [`/assets/manicure.jpg`],
+// 			twitter: {
+// 				card: 'summary_large_image',
+// 			},
+// 		},
+// 	};
+// }
+
 export default function Home() {
 	const { services, setServices } = useStore(state => state);
 
@@ -156,7 +173,7 @@ export default function Home() {
 								{/* <Clock className='w-6 h-6 text-primary' /> */}
 							</div>
 							<h3 className='text-xl font-bold'>
-								Terapeutas Expertos
+								Manicuristas Expertos
 							</h3>
 							<p className='mt-2 text-muted-foreground'>
 								Nuestro equipo de profesionales certificados
