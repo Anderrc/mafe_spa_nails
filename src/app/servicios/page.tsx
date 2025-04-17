@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const getProducts = async () => {
-	const response = await fetch('http://localhost:3000/api/services', {
+	const response = await fetch(process.env.NEXT_PUBLIC_URL  + '/api/services', {
 		method: 'GET',
 	});
 	const data = await response.json();

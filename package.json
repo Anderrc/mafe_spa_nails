@@ -30,9 +30,5 @@
     "prisma": "^6.5.0",
     "tailwindcss": "^4",
     "typescript": "^5"
-  },
-  "overrides": {
-    "@types/react": "19.1.0",
-    "@types/react-dom": "19.1.1"
   }
 }

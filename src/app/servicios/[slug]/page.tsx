@@ -4,9 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export async function generateStaticParams() {
-	const response = await fetch('http://localhost:3000/api/services', {
-		method: 'GET',
-	});
+	const response = await fetch(
+		process.env.NEXT_PUBLIC_URL + '/api/services',
+		{
+			method: 'GET',
+		},
+	);
 	const data = await response.json();
 	return data.data.map((service: ServicesState) => ({
 		params: { slug: service.id.toString() },
@@ -16,12 +19,15 @@ export async function generateStaticParams() {
 const getProduct = async ({ params }: ServicePageParams) => {
 	const sl = await params;
 
-	const response = await fetch('http://localhost:3000/api/services', {
-		method: 'POST',
-		body: JSON.stringify({
-			id: Number(sl.slug),
-		}),
-	});
+	const response = await fetch(
+		process.env.NEXT_PUBLIC_URL + '/api/services',
+		{
+			method: 'POST',
+			body: JSON.stringify({
+				id: Number(sl.slug),
+			}),
+		},
+	);
 	const data = (await response.json()) as { data: ServicesState };
 	return data.data;
 };
