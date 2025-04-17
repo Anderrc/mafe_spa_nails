@@ -7,7 +7,6 @@ const StepThree = () => {
 		useStore(state => state);
 	const { updateFormData: setFormData } = useStore(state => state);
 
-	// Formato de fecha para mostrar
 	const formatDate = (dateString: string) => {
 		if (!dateString) return '';
 		const date = new Date(dateString);
