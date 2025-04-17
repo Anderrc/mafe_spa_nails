@@ -7,7 +7,6 @@ import StepThree from '@/components/ui/StepThree';
 import StepTwo from '@/components/ui/StepTwo';
 import { useStore } from '@/zustand/store';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -23,12 +22,7 @@ const Page = () => {
 		services,
 		isLoading,
 		setIsLoading,
-		updateSelectedServices,
 	} = useStore(state => state);
-
-	const searchParams = useSearchParams();
-
-	const search = searchParams.get('id');
 
 	const goToNextStep = async () => {
 		if (currentStep === 1 && selectedServices === undefined) {
@@ -165,13 +159,6 @@ const Page = () => {
 		setIsLoading(true);
 		getServices();
 	}, [getServices, setIsLoading]);
-
-	useEffect(() => {
-		if (search) {
-			updateSelectedServices(Number(search));
-			setCurrentStep(2);
-		}
-	}, []);
 
 	return (
 		<div className='h-full max-w-4xl mx-auto p-6 bg-white'>

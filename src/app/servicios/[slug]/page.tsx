@@ -4,16 +4,22 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export async function generateStaticParams() {
-	const response = await fetch(
-		process.env.NEXT_PUBLIC_URL + '/api/services',
+	// const response = await fetch(
+	// 	process.env.NEXT_PUBLIC_URL + '/api/services',
+	// 	{
+	// 		method: 'GET',
+	// 	},
+	// );
+	// const data = await response.json();
+	// return data.data.map((service: ServicesState) => ({
+	// 	params: { slug: service.id.toString() },
+	// }));
+
+	return [
 		{
-			method: 'GET',
+			params: { slug: 1 },
 		},
-	);
-	const data = await response.json();
-	return data.data.map((service: ServicesState) => ({
-		params: { slug: service.id.toString() },
-	}));
+	];
 }
 
 const getProduct = async ({ params }: ServicePageParams) => {
@@ -38,8 +44,12 @@ interface ServicePageParams {
 	};
 }
 
-export default async function ServicePage({ params }: ServicePageParams) {
-	const service = await getProduct({ params });
+export default async function ServicePage({
+	params,
+}: {
+	params: Promise<{ slug: string }>;
+}) {
+	const service = await getProduct({ params: await params });
 
 	if (!service) return <div>Servicio no encontrado</div>;
 
