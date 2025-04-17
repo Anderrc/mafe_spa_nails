@@ -1,5 +1,5 @@
 'use client';
-import Reservations from '@/components/pages/ts';
+import Reservations from '@/components/pages/Reservations';
 import { Suspense } from 'react';
 
 const Page = () => {
