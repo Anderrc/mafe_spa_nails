@@ -6,23 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
-// export async function generateMetadata() {
-// 	return {
-// 		title: 'Mafe Nails Spa',
-// 		description: 'Reserva tu experiencia de spa y permítenos cuidar de ti.',
-// 		openGraph: {
-// 			type: 'website',
-// 			url: process.env.NEXT_PUBLIC_URL,
-// 			title: 'Mafe Nails Spa',
-// 			description: 'Reserva tu experiencia de spa y permítenos cuidar de ti.',
-// 			images: [`/assets/manicure.jpg`],
-// 			twitter: {
-// 				card: 'summary_large_image',
-// 			},
-// 		},
-// 	};
-// }
-
 export default function Home() {
 	const { services, setServices } = useStore(state => state);
 
@@ -74,6 +57,7 @@ export default function Home() {
 								height='550'
 								src='/assets/manicure.jpg'
 								width='800'
+								loading='lazy'
 							/>
 						</div>
 					</div>
@@ -107,6 +91,7 @@ export default function Home() {
 									src={`/assets/${service.id}.jpg`}
 									width={800}
 									height={500}
+									loading='lazy'
 								/>
 								<div className='p-6'>
 									<h3 className='text-xl font-bold'>
