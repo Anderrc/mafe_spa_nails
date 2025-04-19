@@ -25,9 +25,6 @@ export const metadata: Metadata = {
 		title: 'Mafe Nails Spa',
 		description: 'Reserva tu experiencia de spa y permítenos cuidar de ti.',
 		images: [`/assets/manicure.jpg`],
-		twitter: {
-			card: 'summary_large_image',
-		},
 	},
 };
 

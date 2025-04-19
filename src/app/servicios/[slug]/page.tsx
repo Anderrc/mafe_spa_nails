@@ -16,7 +16,11 @@ export async function generateStaticParams() {
 	}));
 }
 
-const getProduct = async ({ params }: ServicePageParams) => {
+const getProduct = async ({
+	params,
+}: {
+	params: Promise<{ slug: string }>;
+}) => {
 	const sl = await params;
 
 	const response = await fetch(
@@ -32,9 +36,12 @@ const getProduct = async ({ params }: ServicePageParams) => {
 	return data.data;
 };
 
-export async function generateMetadata({ params }: ServicePageParams) {
-	const { slug } = params;
-	const product = await getProduct({ params: { slug: slug } });
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ slug: string }>;
+}) {
+	const product = await getProduct({ params });
 	return {
 		title: product.name,
 		description: product.description,
@@ -44,25 +51,16 @@ export async function generateMetadata({ params }: ServicePageParams) {
 			title: product.name,
 			description: product.description,
 			images: [`/assets/${product.id}.jpg`],
-			twitter: {
-				card: 'summary_large_image',
-			},
 		},
 	};
 }
 
-interface ServicePageParams {
-	params: {
-		slug: string;
-	};
-}
-
-export default async function ServicePage({
+export default async function Page({
 	params,
 }: {
 	params: Promise<{ slug: string }>;
 }) {
-	const service = await getProduct({ params: await params });
+	const service = await getProduct({ params: params });
 
 	if (!service) return <div>Servicio no encontrado</div>;
 
