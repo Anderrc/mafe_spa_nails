@@ -1,10 +1,10 @@
 import { Button } from '@/components/ui/Atoms/button';
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
-
-import Image from 'next/image';
 import Link from 'next/dist/client/link';
+import { Geist, Geist_Mono } from 'next/font/google';
+import Image from 'next/image';
+import './globals.css';
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -35,6 +35,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='es-CO'>
+			<Analytics />
 			<head>
 				<link rel='icon' href='/assets/nail-polish.png' />
 			</head>
